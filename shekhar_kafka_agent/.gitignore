@@ -1,0 +1,82 @@
+# Environment Variables
+.env
+.env.local
+.env.*.local
+*.env
+
+# Python-generated files
+__pycache__/
+*.py[oc]
+*.pyc
+*.pyo
+build/
+dist/
+wheels/
+*.egg-info
+.Python
+
+# Virtual environments
+.venv
+llm_doc_venv/
+venv/
+ENV/
+env/
+.venv/
+
+# IDE and Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.project
+.pydevproject
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb
+
+# Data and Cache
+*.db
+*.sqlite
+*.sqlite3
+.cache/
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+*.log
+
+# Dependencies
+*.lock
+uv.lock
+
+# API Keys and Secrets
+secrets.json
+credentials.json
+*.pem
+*.key
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# Vector Store and Local Files
+faiss_store/
+vectorstore/
+*.pkl
+*.pickle
+
+# Streamlit Cache
+.streamlit/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/

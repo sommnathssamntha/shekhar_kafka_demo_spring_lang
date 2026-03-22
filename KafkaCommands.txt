@@ -1,0 +1,38 @@
+
+
+cluster id : dfzHcDVxSXC2pnbfQXRkNg
+
+.\bin\windows\kafka-storage.bat format -t dfzHcDVxSXC2pnbfQXRkNg -c .\config\kraft\server.properties
+
+.\bin\windows\kafka-server-start.bat G:\SoftwareResearch\Kafka\kafka\config\broker1.properties
+
+.\bin\windows\kafka-topics.bat --bootstrap-server localhost:9092 --describe --topic product-created-events-topic
+
+
+.\bin\windows\kafka-storage.bat format -t dfzHcDVxSXC2pnbfQXRkNg -c G:\SoftwareResearch\Kafka\kafka\config\broker1.properties
+
+.\bin\windows\kafka-storage.bat format -t dfzHcDVxSXC2pnbfQXRkNg -c G:\SoftwareResearch\Kafka\kafka\config\broker2.properties
+
+.\bin\windows\kafka-storage.bat format -t dfzHcDVxSXC2pnbfQXRkNg -c G:\SoftwareResearch\Kafka\kafka\config\broker3.properties
+
+
+
+
+############    consumer log for messages ################
+.\bin\windows\kafka-consumer-groups.bat --bootstrap-server localhost:9092 --describe --group product-created-events-group
+
+
+
+###########  Run this command to "Force Kill" the state of that group and reset checkpoint to beginning:  ###################
+.\bin\windows\kafka-consumer-groups.bat --bootstrap-server localhost:9092 --group product-created-events-group --reset-offsets --to-earliest --topic product-created-events-topic --execute
+
+
+
+###### kafka log dump statement ###########################
+.\bin\windows\kafka-run-class.bat kafka.tools.DumpLogSegments --deep-iteration --print-data-log --files G:\kafka-logs\product-created-events-topic-2\00000000000000000000.log
+
+
+
+######### Kafka Lag Detect ######################
+kafka-consumer-groups.bat --bootstrap-server localhost:9092 --describe --group product-service-group
+

@@ -1,0 +1,13 @@
+# config.yaml - Infrastructure Settings (Shareable)
+kafka:
+  bin_path: "G:\\SoftwareResearch\\Kafka\\kafka\\bin\\windows\\kafka-consumer-groups.bat"
+  bootstrap_server: "localhost:9092"
+  group_id: "product-created-events-group"
+  topic_name: "product-created-events-topic"
+
+java_app:
+  # Point to the actual binary log file the Agent found earlier
+  log_path: "G:\\kafka-logs\\broker1\\product-created-events-topic-2\\00000000000000000000.log"
+
+database:
+  jdbc_url: "jdbc:h2:file:G:/kafka-logs/h2db/productdb"
