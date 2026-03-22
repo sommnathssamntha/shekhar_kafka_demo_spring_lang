@@ -25,6 +25,9 @@ with distributed Leaders across all three brokers (1, 2, and 3).
 🤖 ** AI-Driven Operations (AIOps): The LangGraph Agent [PILOT MODE]**
 To solve the "Silent Failure" problem, I developed a Stateful AI Agent using LangChain and LangGraph. This is a **PILOT MODE** implementation that performs Autonomous Root Cause Analysis (RCA) by actively reading Kafka logs and providing intelligent recommendations.
 
+**Kafka Broker Screenshot:**
+![kafka broker](docs/output1.png)
+
 ⚡ **Evidence of Agent Log Analysis & Recommendations:**
 The following agent implementations serve as proof points that the agent is reading Kafka logs and providing suggestions for corrective action:
 
