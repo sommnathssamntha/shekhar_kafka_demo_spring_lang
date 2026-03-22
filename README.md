@@ -22,7 +22,7 @@ with distributed Leaders across all three brokers (1, 2, and 3).
 
 **Edge Case Testing**: This Spring Boot implementation has been thoroughly tested against multiple edge cases including broker failover, poison pill messages, offset resets, and consumer lag scenarios.
 
-🤖 ** AI-Driven Operations (AIOps): The LangGraph Agent [PILOT MODE]**
+🤖 **AI-Driven Operations (AIOps): The LangGraph Agent [PILOT MODE]**
 To solve the "Silent Failure" problem, I developed a Stateful AI Agent using LangChain and LangGraph. This is a **PILOT MODE** implementation that performs Autonomous Root Cause Analysis (RCA) by actively reading Kafka logs and providing intelligent recommendations.
 
 **Kafka Broker Screenshot:**
