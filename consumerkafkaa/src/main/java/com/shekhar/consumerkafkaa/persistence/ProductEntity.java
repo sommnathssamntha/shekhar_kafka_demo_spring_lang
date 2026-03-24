@@ -26,4 +26,7 @@ public class ProductEntity {
     private BigDecimal price;
     private Integer quantity;
 
+    // Versioning for Out-of-Order protection
+    private Long version;
+
 }

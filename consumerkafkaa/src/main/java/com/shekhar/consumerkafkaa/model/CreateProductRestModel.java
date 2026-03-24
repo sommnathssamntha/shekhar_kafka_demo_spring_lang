@@ -7,13 +7,12 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
 public record CreateProductRestModel(
-                @NotBlank(message = "productId is mandatory") String productId,
+        @NotBlank(message = "productId is mandatory") String productId,
 
-                @NotBlank(message = "name is mandatory") String name,
+        @NotBlank(message = "name is mandatory") String name,
 
-                @NotNull(message = "price is mandatory")
-                @Positive(message = "price must be positive") BigDecimal price,
+        @NotNull(message = "price is mandatory") @Positive(message = "price must be positive") BigDecimal price,
 
-                @NotNull(message = "quantity is mandatory") 
-                @Positive(message = "quantity must be positive") Integer quantity) {
+        @NotNull(message = "quantity is mandatory") @Positive(message = "quantity must be positive") Integer quantity,
+        @NotNull(message = "version is mandatory") Long version) {
 }
