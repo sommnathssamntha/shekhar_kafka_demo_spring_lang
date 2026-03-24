@@ -48,6 +48,9 @@ cluster id : dfzHcDVxSXC2pnbfQXRkNg
 3. jcmd PID  Thread.print
 
 
+### Bypass startegy in worst case where broker seems fine#########
+.\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic product-created-events-topic --from-beginning
+
 
 
 
