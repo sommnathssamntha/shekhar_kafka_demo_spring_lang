@@ -1,6 +1,23 @@
 
 
-cluster id : dfzHcDVxSXC2pnbfQXRkNg
+cluster id : 
+pUdXrOsjSgOALXE2zDpmpg
+
+
+1. command to generate cluster id:  ------------:: A. Generate a fresh Cluster ID
+	bin\windows\kafka-storage.bat random-uuid
+	
+2. Format the folder with cluster id:
+:: B. Format the folder using your config file
+bin\windows\kafka-storage.bat format -t <YOUR_COPIED_ID> -c config\server.properties
+
+to 
+bin\windows\kafka-storage.bat format -t pUdXrOsjSgOALXE2zDpmpg -c config\server.properties
+
+
+
+
+start kafka server----    bin\windows\kafka-server-start.bat config\server.properties
 
 .\bin\windows\kafka-storage.bat format -t dfzHcDVxSXC2pnbfQXRkNg -c .\config\kraft\server.properties
 
@@ -52,7 +69,29 @@ cluster id : dfzHcDVxSXC2pnbfQXRkNg
 .\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic product-created-events-topic --from-beginning
 
 
+------------------------Kafka TEST ---------------------------------
+
+------Kafka create topic to test ----
+bin\windows\kafka-topics.bat --create --topic mastercard-test --bootstrap-server localhost:9092 --partitions 3 --replication-factor 1
+
+
+----------Producer type random words----------------
+bin\windows\kafka-console-producer.bat --topic mastercard-test --bootstrap-server localhost:9092
 
 
 
+-------------Consumer ------
+bin\windows\kafka-console-consumer.bat --topic mastercard-test --from-beginning --bootstrap-server localhost:9092
+
+
+
+
+
+------------Observability Dashboard --------------
+http://localhost:7071/metrics   -> JMX metrics
+
+Run promethues --> prometheus.exe --config.file=prometheus.yml
+
+
+Grafana Template for Kafka : https://grafana.com/grafana/dashboards/721-kafka/
 

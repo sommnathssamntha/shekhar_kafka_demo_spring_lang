@@ -22,7 +22,7 @@ with distributed Leaders across all three brokers (1, 2, and 3).
 
 **Edge Case Testing**: This Spring Boot implementation has been thoroughly tested against multiple edge cases including broker failover, poison pill messages, offset resets, and consumer lag scenarios.
 
-🤖 **AI-Driven Operations (AIOps): The LangGraph Agent [PILOT MODE]**
+🤖 ** AI-Driven Operations (AIOps): The LangGraph Agent [PILOT MODE]**
 To solve the "Silent Failure" problem, I developed a Stateful AI Agent using LangChain and LangGraph. This is a **PILOT MODE** implementation that performs Autonomous Root Cause Analysis (RCA) by actively reading Kafka logs and providing intelligent recommendations.
 
 **Kafka Broker Screenshot:**
@@ -54,7 +54,42 @@ Broker Failover: Terminated the Leader Broker for Partition 0; observed an autom
 Poison Pill Handling: Implemented a Dead Letter Topic (DLT) pattern using @RetryableTopic. Verified that malformed JSONs are moved to a "Hospital" topic rather than blocking the main pipeline.
 Offset Time-Travel: Performed a surgical Offset Reset to earliest to demonstrate the ability to re-process historical data after a consumer fix.
 
-🚀 **How to Run Locally**
+� **Implementation Steps: Kafka Observability Stack**
+
+**1. Infrastructure Foundation (G: Drive Setup)**
+Organized a dedicated monitoring workspace on a secondary drive (G:\Monitoring) to ensure a zero-impact installation on the host operating system.
+Deployed Portable Standalone Binaries for Prometheus (LTS 3.5.2) and Grafana (v11.5) to maintain a lean, registry-free environment.
+
+**2. Metric Extraction (JMX Exporter)**
+Integrated the JMX Prometheus Java Agent (jmx_prometheus_javaagent-1.5.0.jar) into the Kafka Broker process.
+Configured KAFKA_OPTS in the startup batch files to expose internal MBeans (Metrics) on port 7071.
+Authored a custom kafka_config.yml to map raw JMX MBeans (like ActiveControllerCount and BytesInPerSec) into Prometheus-compatible formats.
+
+**3. Data Collection (Prometheus Scrape Configuration)**
+Configured Prometheus as a Time-Series Database (TSDB) to "scrape" the Kafka JMX endpoint every 15 seconds.
+Aligned the job_name to kafka within prometheus.yml to ensure seamless compatibility with standard visualization templates.
+Verified data ingestion via the Prometheus Targets dashboard (Status: UP).
+
+![Prometheus Targets Dashboard](docs/prometheus.png)
+
+**4. Visualization & Analysis (Grafana)**
+Provisioned a Grafana Server on port 3005 (customized to avoid local port conflicts).
+Established a secure data connection between Grafana and the local Prometheus instance (http://localhost:9090).
+Imported a specialized Kafka Dashboard (ID: 721) and performed Label Alignment to visualize real-time spikes in CPU, Memory, and Throughput.
+
+![Grafana Kafka Dashboard](docs/grafana_dashboard.png)
+
+![Grafana Active Controller Metric](docs/grafana_active_controller.png)
+
+**5. Validation & Smoke Testing**
+Triggered real-time traffic using the Kafka Console Producer and Consumer CLI tools.
+Validated the KRaft Quorum health by monitoring the ActiveControllerCount metric (Value: 1), confirming a stable, leader-elected cluster.
+
+![Kafka Producer Activity](docs/producer.png)
+
+![Kafka Consumer Activity](docs/consumer.png)
+
+�🚀 **How to Run Locally**
 Format Storage: kafka-storage.bat format -t <UUID> -c broker1.properties (Repeat for all 3).
 Start Cluster: Launch 3 separate CMD windows for each broker config.
 Start Services: Run the Producer (Port 8080) and Consumer (Port 8081).
